@@ -1,6 +1,6 @@
 import React from 'react'
 import './post.css'
-import post1 from '../assets/images/9.jpeg'
+import post1 from '../../assets/images/9.jpeg'
 
 const Post = () => {
     return (

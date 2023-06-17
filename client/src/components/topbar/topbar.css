@@ -9,6 +9,13 @@
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
 }
+.topLogo {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 30px;
+  line-height: 2;
+  letter-spacing: 1.2px;
+  color: teal;
+}
 
 .topLeft {
   flex: 3;
