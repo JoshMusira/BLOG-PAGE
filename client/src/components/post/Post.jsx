@@ -8,8 +8,8 @@ const Post = () => {
             <img className='postImg' src={post1} alt="" />
             <div className="postInfo">
                 <div className="postCats">
-                    <span className="postcat">Music</span>
-                    <span className="postcat">Life</span>
+                    {/* <span className="postCat">Music</span> */}
+                    <span className="postCat">Life</span>
                 </div>
                 <span className="postTitle">
                     Lorem ipsum dolor sit amet.

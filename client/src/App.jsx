@@ -13,7 +13,7 @@ import About from './pages/about/About'
 import Contact from './pages/contact/Contact'
 
 function App() {
-  const user = false;
+  const user = true
 
   return (
 

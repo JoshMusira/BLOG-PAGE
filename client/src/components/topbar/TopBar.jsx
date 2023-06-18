@@ -4,7 +4,7 @@ import logo from '../../assets/images/4.jpeg'
 import { Link } from 'react-router-dom'
 
 const TopBar = () => {
-    const user = false;
+    const user = true;
     return (
         <div className='top'>
             <div className="topLeft">
