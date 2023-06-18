@@ -9,6 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 // my-routes
 userRoutes(app);
 

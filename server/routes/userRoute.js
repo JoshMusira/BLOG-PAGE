@@ -1,16 +1,16 @@
-import { createUser } from '../controllers/userController.js';
+import { createUser,updateUser,getUser,getAllUsers,deleteUser } from '../controllers/userController.js';
 
 
-
+    //Users
 const userRoutes = (app) => {
     app.route('/user')
-        // .get(getTodos)
+        .get(getAllUsers)
         .post(createUser);
 
-    // app.route('/todo/:id')
-    //     .put(updateTodo)
-    //     .get(getTodo)
-    //     .delete(deleteTodo);
+    app.route('/user/:id')
+         .put(updateUser)
+         .get(getUser)
+        .delete(deleteUser);
 }
 
 
