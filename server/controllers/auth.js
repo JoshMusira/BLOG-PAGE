@@ -12,16 +12,16 @@ export const loginRequired = (req, res, next) => {
     }
 };
 
-// Register a new todo
+// Register a new User
 
 export const Register = async (req, res) => {
-    const { username , email, password,created_at } = req.body;
+    const { username, email, password, created_at } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
     try {
         let pool = await sql.connect(config.sql);
         const result = await pool.request()
             .input('username', sql.VarChar, username)
-            .input('email', sql.VarChar, email)         
+            .input('email', sql.VarChar, email)
             .query('SELECT * FROM Users WHERE username = @username OR email = @email');
         const user = result.recordset[0];
         if (user) {
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
             res.status(401).json({ error: 'Authentication failed. Wrong credentials.' });
         } else {
             const token = `JWT ${jwt.sign({ username: user.username, email: user.email }, config.jwt_secret)}`;
-            res.status(200).json({ email: user.email, username: user.username, id: user.id, token: token });
+            res.status(200).json({ email: user.email, username: user.username, id: user.user_id, token: token });
         }
     }
 

@@ -5,6 +5,7 @@ import userRoutes from './routes/userRoute.js';
 import postRoutes from './routes/postRoute.js';
 import commentRoutes from './routes/comment.Route.js';
 import likeRoutes from './routes/likeRoute.js';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 //

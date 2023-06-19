@@ -1,34 +1,74 @@
+
 import sql from 'mssql';
 import config from '../db/config.js';
 
-//Get all like
-
+//User who liked a post
 export const createLike = async (req, res) => {
     const { post_id, user_id, created_at } = req.body;
+
     try {
-        let pool = await sql.connect(config.sql);
+        const pool = await sql.connect(config.sql);
+
+        const query = `
+      SELECT post_id, user_id, created_at
+      FROM Likes
+      WHERE post_id = @post_id AND user_id = @user_id
+    `;
+
         const result = await pool.request()
-        await pool.request()
-            .input('post_id', sql.VarChar, post_id)
-            .input('user_id', sql.VarChar, user_id)
-            .input('created_at', sql.VarChar, created_at)
-        const like = result.recordset[0]
+            .input('post_id', sql.Int, post_id)
+            .input('user_id', sql.Int, user_id)
+            .query(query);
+
+        const like = result.recordset[0];
+
         if (like) {
-            res.send('Like only once')
-        }
-        else {
+            res.status(409).json({ error: 'Like already exists' });
+        } else {
+            const insertQuery = ' INSERT INTO Likes (post_id, user_id, created_at) VALUES (@post_id, @user_id @created_at)';
+
             await pool.request()
-                .input('post_id', sql.VarChar, post_id)
-                .input('user_id', sql.VarChar, user_id)
-                .input('created_at', sql.VarChar, created_at)
-                .query('INSERT INTO Likes (post_id,user_id, created_at) VALUES (@post_id , @user_id ,@created_at)');
+                .input('post_id', sql.Int, post_id)
+                .input('user_id', sql.Int, user_id)
+                .input('created_at', sql.DateTime, created_at)
+                .query(insertQuery);
         }
+
         res.status(200).send({ message: 'Like created successfully' });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({ error: 'An error occurred while creating a Like' });
     } finally {
         sql.close();
     }
+};
 
+// getUsersWhoLikedPost
+
+export const getUsersWhoLikedPost = async (req, res) => {
+    const { post_id } = req.params;
+
+    try {
+        const pool = await sql.connect(config.sql);
+
+        const query = `
+      SELECT U.username, L.post_id
+      FROM Likes L
+      JOIN Users U ON L.user_id = U.user_id
+      WHERE L.post_id = @post_id
+    `;
+
+        const result = await pool.request()
+            .input('post_id', sql.Int, post_id)
+            .query(query);
+
+        const likes = result.recordset;
+
+        res.status(200).json({ likes });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'An error occurred while retrieving likes' });
+    } finally {
+        sql.close();
+    }
 };

@@ -1,20 +1,22 @@
 import { createPost, getAllPost, updatePost, updatePost2, updatePost3, deletePost } from '../controllers/postController.js'
+import { loginRequired } from '../controllers/auth.js'
 
 const postRoutes = (app) => {
     app.route('/post')
-        .get(getAllPost)
-        .post(createPost);
+        .get(loginRequired, getAllPost)
+        .post(loginRequired, createPost);
 
     //Title
     app.route('/post/:id')
-        .put(updatePost)
-        .delete(deletePost)
+        .put(loginRequired, updatePost)
+        .delete(loginRequired, deletePost)
     //Content
     app.route('/post2/:id')
-        .put(updatePost2)
+        .put(loginRequired, updatePost2)
     //Category
     app.route('/post3/:id')
-        .put(updatePost3)
+        .put(loginRequired, updatePost3)
+
 
 }
 

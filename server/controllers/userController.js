@@ -3,7 +3,6 @@ import config from '../db/config.js';
 import bcrypt from 'bcrypt';
 
 //create User
-
 export const createUser = async (req, res) => {
     const { username, email, password, created_at } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
