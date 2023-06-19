@@ -1,6 +1,5 @@
 import { createUser,updateUser,getUser,getAllUsers,deleteUser } from '../controllers/userController.js';
 
-
     //Users
 const userRoutes = (app) => {
     app.route('/user')

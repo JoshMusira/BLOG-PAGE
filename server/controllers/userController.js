@@ -2,16 +2,16 @@ import sql from 'mssql';
 import config from '../db/config.js';
 import bcrypt from 'bcrypt';
 
-// Create a new todo
+//create User
 
 export const createUser = async (req, res) => {
-    const { username , email, password,created_at } = req.body;
+    const { username, email, password, created_at } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
     try {
         let pool = await sql.connect(config.sql);
         const result = await pool.request()
             .input('username', sql.VarChar, username)
-            .input('email', sql.VarChar, email)         
+            .input('email', sql.VarChar, email)
             .query('SELECT * FROM Users WHERE username = @username OR email = @email');
         const user = result.recordset[0];
         if (user) {
@@ -40,7 +40,7 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const {email, password } = req.body;
+        const { email, password } = req.body;
         const hashedpassword = bcrypt.hashSync(password, 10);
         let pool = await sql.connect(config.sql);
         await pool.request()
@@ -90,7 +90,7 @@ export const deleteUser = async (req, res) => {
     }
 };
 
- // Get all Users
+// Get all Users
 export const getAllUsers = async (req, res) => {
     try {
         let pool = await sql.connect(config.sql);
