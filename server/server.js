@@ -6,10 +6,12 @@ import postRoutes from './routes/postRoute.js';
 import commentRoutes from './routes/comment.Route.js';
 import likeRoutes from './routes/likeRoute.js';
 import jwt from 'jsonwebtoken';
+import cors from 'cors'
 
 const app = express();
 //
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())

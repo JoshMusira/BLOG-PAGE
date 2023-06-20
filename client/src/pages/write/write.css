@@ -1,75 +1,78 @@
 .write {
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  padding: 5px;
+  border: 2px solid gray;
+  border-radius: 20px;
+  width: 70%;
+  margin: 30px auto;
 }
 
 .writeImg {
-  margin-left: 150px;
-  width: 70vw;
-  height: 250px;
-  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
   object-fit: cover;
 }
 
-.writeForm {
-  position: relative;
-}
-
 .writeFormGroup {
-  margin-left: 150px;
+  /* margin-bottom: 2px solid gray; */
   display: flex;
   align-items: center;
+  width: 100%;
+}
+.label {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  color: teal;
+  gap: 5px;
+}
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
-.writeIcon {
-  width: 25px;
-  height: 25px;
-  font-size: 20px;
-  border: 1px solid;
-  border-radius: 50%;
-  color: rgb(129, 125, 125);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.Submit {
+  color: white;
+  background-color: teal;
+  border: none;
+  padding: 9px 15px;
+  border-radius: 10px;
+  /* margin-right: 20px; */
+  font-size: 25px;
   cursor: pointer;
 }
 
 .writeInput {
   font-size: 30px;
   border: none;
-  padding: 20px;
+  padding-top: 20px;
+  /* padding: 20px; */
   width: 70vw;
 }
-
-.writeInput::placeholder {
+.writeInput:focus {
+  outline: none;
+}
+.text::placeholder {
   color: rgb(129, 125, 125);
+  /* padding-left: 20px; */
 
   /* font-weight: 400; */
 }
-
-.writeInput:focus {
-  outline-style: none;
+.text:focus {
+  /* padding-left: 20px; */
+  outline: none;
+  /* outline-style: none; */
 }
-
-.writeText {
-  width: 70vw;
-  height: 100vh;
+.textarea {
+  width: 70%;
+}
+.text {
+  width: 100%;
+  height: 50vh;
   font-family: inherit;
   font-size: 30px;
   line-height: 1.5;
   color: rgb(129, 125, 125);
-}
-
-.writeSubmit {
-  position: absolute;
-  top: 20px;
-  right: 50px;
-  color: white;
-  background-color: teal;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 }

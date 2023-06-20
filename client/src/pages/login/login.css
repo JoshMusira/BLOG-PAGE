@@ -5,8 +5,8 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.3),
-      rgba(255, 255, 255, 0.3)
+      rgba(123, 116, 116, 0.3),
+      rgba(152, 146, 146, 0.3)
     ),
     url("../../assets/images/alley.jpg");
   background-size: cover;
@@ -14,6 +14,7 @@
 
 .loginTitle {
   font-size: 60px;
+  color: white;
 }
 
 .loginForm {
@@ -23,6 +24,12 @@
   flex-direction: column;
 }
 
+.error {
+  color: rgb(255, 0, 0);
+  margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-bottom: 5px;
+}
 .loginForm > label {
   margin: 10px 0;
   font-size: 24px;

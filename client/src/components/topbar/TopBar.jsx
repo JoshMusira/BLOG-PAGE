@@ -2,9 +2,15 @@ import React from 'react'
 import './topbar.css'
 import logo from '../../assets/images/4.jpeg'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Context } from '../../context/userContext/Context'
 
 const TopBar = () => {
-    const user = true;
+    const { user } = useContext(Context)
+    const handleLogout = () => {
+        dispatch({ type: "LOGOUT" });
+
+    };
     return (
         <div className='top'>
             <div className="topLeft">
@@ -17,7 +23,10 @@ const TopBar = () => {
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem">
-                        <Link to='/' className='link'  > HOME</Link>
+                        {
+                            user &&
+                            <Link to='/' className='link'  > HOME</Link>
+                        }
                     </li>
                     <li className="topListItem">
                         <Link to='/about' className='link'>ABOUT</Link>
@@ -26,13 +35,18 @@ const TopBar = () => {
                         <Link to='/contact' className='link'>CONTACT</Link>
                     </li>
                     <li className="topListItem">
-                        <Link to='/write' className='link'>WRITE</Link>
+                        {
+                            user &&
+                            <Link to='/write' className='link'>WRITE</Link>
+                        }
                     </li>
-                    <li className="topListItem"><Link className='link'>{user && "LOGOUT"}</Link></li>
+                    <li className="topListItem"><Link onClick={handleLogout} className='link'>{user && "LOGOUT"}</Link></li>
                 </ul>
             </div>
             <div className="topRight">
-                {user ? (
+
+                {
+                    user &&
                     <Link className="link" to="/settings">
                         <img
                             className="topImg"
@@ -40,21 +54,22 @@ const TopBar = () => {
                             alt=""
                         />
                     </Link>
+                }
 
-                ) : (
-                    <ul className="topList">
-                        <li className="topListItem">
-                            <Link className="link" to="/login">
-                                LOGIN
-                            </Link>
-                        </li>
-                        <li className="topListItem">
-                            <Link className="link" to="/register">
-                                REGISTER
-                            </Link>
-                        </li>
-                    </ul>
-                )}
+
+                <ul className="topList">
+                    <li className="topListItem">
+                        <Link className="link" to="/login">
+                            LOGIN
+                        </Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link className="link" to="/register">
+                            REGISTER
+                        </Link>
+                    </li>
+                </ul>
+
                 {/* <img className='topImg' src={logo} alt="" />
                 <i className="topSearchIcon fa-sharp fa-solid fa-magnifying-glass"></i> */}
             </div>

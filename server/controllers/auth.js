@@ -15,8 +15,9 @@ export const loginRequired = (req, res, next) => {
 // Register a new User
 
 export const Register = async (req, res) => {
-    const { username, email, password, created_at } = req.body;
+    const { username, email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
+    const created_at = new Date().toLocaleString();
     try {
         let pool = await sql.connect(config.sql);
         const result = await pool.request()

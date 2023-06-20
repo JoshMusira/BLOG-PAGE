@@ -8,16 +8,18 @@ const Write = () => {
             <img className='writeImg' src={writeImage} alt="" />
             <form className="writeForm">
                 <div className="writeFormGroup">
-                    <label htmlFor="fileInput">
-                        <i className=" fas fa-plus" ></i>
+                    <label className='label' htmlFor="fileInput">Upload
+                        <i className=" icon fa-solid fa-file-import"></i>
                     </label>
                     <input type="file" id="fileInput" style={{ display: 'none' }} />
+                    <input type="text" placeholder='Category' id="" className="writeInput" autoFocus={true} />
                     <input type="text" placeholder='Title' id="" className="writeInput" autoFocus={true} />
+                    <button className="Submit">Publish</button>
                 </div>
-                <div className="writeFormGroup">
-                    <textarea placeholder='Tell your story.....' className='writeInput writeText' ></textarea>
+                <div className="textArea">
+                    <textarea placeholder='Tell your story.....' className='text' ></textarea>
                 </div>
-                <button className="writeSubmit">Publish</button>
+
             </form>
 
         </div>

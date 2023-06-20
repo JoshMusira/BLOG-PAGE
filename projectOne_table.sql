@@ -4,8 +4,8 @@ CREATE TABLE Users (
   username VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   password VARCHAR(100) NOT NULL,
-  image_URL VARCHAR(100) NOT NULL,
-  created_at DATETIME NOT NULL
+  image_URL VARCHAR(100) ,
+  created_at VARCHAR NOT NULL
 );
 
 -- Create Posts table
@@ -13,7 +13,7 @@ CREATE TABLE Posts (
   post_id INT IDENTITY(1,1) PRIMARY KEY,
   title VARCHAR(50) NOT NULL,
   Content VARCHAR(MAX) NOT NULL,
-  image_URL VARCHAR(100) NOT NULL,
+  image_URL VARCHAR(100) ,
   user_id INT NOT NULL,
   category_name VARCHAR(50) NOT NULL,
   created_at DATETIME NOT NULL,

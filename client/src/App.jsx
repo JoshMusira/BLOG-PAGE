@@ -11,20 +11,23 @@ import Write from './pages/write/Write'
 import Settings from './pages/settings/Settings'
 import About from './pages/about/About'
 import Contact from './pages/contact/Contact'
+import { useContext } from 'react'
+import { Context } from './context/userContext/Context'
 
 function App() {
-  const user = true
+  const { user } = useContext(Context)
+
 
   return (
 
     <BrowserRouter>
       <TopBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/register' element={user ? <Home /> : <Register />} />
-        <Route path='/login' element={user ? <Home /> : <Login />} />
-        <Route path='/settings' element={user ? <Settings /> : <Register />} />
-        <Route path='/write' element={user ? <Write /> : <Register />} />
+        <Route path='/home' element={user ? <Home /> : <Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/settings' element={<Settings />} />
+        <Route path='/write' element={user ? <Write /> : <Login />} />
         <Route path='/post/:postId' element={<Single />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
