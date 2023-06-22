@@ -13,9 +13,9 @@ const Sidebar = () => {
             <div className="sidebarItem">
                 <span className="sidebarTitle">CATEGORIES</span>
                 <ul className="sidebarList">
-                    <li className="sidebarListItem">Smart Phones</li>
-                    <li className="sidebarListItem">Laptops</li>
-                    <li className="sidebarListItem">Cinema</li>
+                    <li className="sidebarListItem">Nature</li>
+                    <li className="sidebarListItem">Education</li>
+                    <li className="sidebarListItem">Movies</li>
                     <li className="sidebarListItem">Sport</li>
                     <li className="sidebarListItem">Music</li>
                     <li className="sidebarListItem">Fashion</li>

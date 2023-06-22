@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-import Reducer from './Reducer.jsx';
+import Reducer from './Reducer';
 
 //Initial User
 const INITIAL_STATE = {

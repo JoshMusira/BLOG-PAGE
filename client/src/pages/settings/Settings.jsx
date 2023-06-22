@@ -2,8 +2,11 @@ import React from 'react'
 import '../settings/settings.css'
 import profileImage from '../../assets/images/4.jpeg'
 import Sidebar from '../../components/sidebar/Sidebar'
+import { useContext } from 'react'
+import { Context } from '../../context/userContext/Context'
 
 const Settings = () => {
+    const { user } = useContext(Context)
     return (
         <div className='settings'>
             <div className="settingsWrapper">

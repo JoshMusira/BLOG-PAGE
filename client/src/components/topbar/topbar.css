@@ -1,20 +1,26 @@
 .top {
-  width: 100%;
-  height: 50px;
-  background-color: white;
+  /* width: 100vw; */
+  height: 60px;
+  /* border: 1px solid red; */
+  background-color: teal;
   position: sticky;
   top: 0;
   display: flex;
   z-index: 99;
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
+  box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  transition: all 1s ease-in-out;
 }
 .topLogo {
   font-family: "Josefin Sans", sans-serif;
   font-size: 30px;
   line-height: 2;
+  font-weight: bold;
   letter-spacing: 1.2px;
-  color: teal;
+  color: black;
 }
 
 .topLeft {
@@ -30,17 +36,76 @@
 .topCenter {
   flex: 6;
 }
-.topIcon {
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+.active::before,
+.link::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  left: 10px;
+  background-color: black;
+  right: 10px;
+  border-radius: 10px;
+  transform: scaleX(0);
+  bottom: -8px;
+  transition: all 0.35s ease-in-out;
+}
+.active::before {
+  transform: scaleX(1);
+}
+.link:hover::before {
+  transform: scaleX(1);
+}
+.iconTop {
   font-size: 20px;
-  margin-right: 10px;
-  color: #444;
+  color: black;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 5px;
+}
+.pro {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.email {
+  color: black;
+  /* font-size: 17px; */
+}
+.username {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.topIcon {
+  font-size: 25px;
+  margin-right: 5px;
+  color: white;
   cursor: pointer;
 }
+
 .top .topImg {
   width: 40px;
   height: 40px;
   object-fit: cover;
+  background-position: center;
   border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+.top .topImg:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
 }
 .topList {
   display: flex;
@@ -54,7 +119,8 @@
 .topListItem {
   margin-right: 20px;
   font-size: 18px;
-  font-weight: 300;
+  color: white;
+  /* font-weight: 300; */
   cursor: pointer;
 }
 

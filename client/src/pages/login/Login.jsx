@@ -27,8 +27,8 @@ const Login = () => {
             .then(({ data }) => {
                 if (data.token) {
                     dispatch({ type: "LOGIN_SUCCESS", payload: data })
-                    alert('Login Successfull ');
-                    navigate('/home');
+                    // alert('Login Successfull ');
+                    navigate('/');
 
 
                 }

@@ -5,7 +5,8 @@ import bcrypt from 'bcrypt';
 // Create a Post
 
 export const createPost = async (req, res) => {
-    const { title, Content, user_id, category_name, created_at } = req.body;
+    const { title, Content, user_id, category_name } = req.body;
+    const created_at = new Date().toLocaleString();
     try {
         let pool = await sql.connect(config.sql);
         const result = await pool.request()
@@ -20,7 +21,7 @@ export const createPost = async (req, res) => {
             await pool.request()
                 .input('title', sql.VarChar, title)
                 .input('Content', sql.VarChar, Content)
-                .input('user_id', sql.VarChar, user_id)
+                .input('user_id', sql.Int, user_id)
                 .input('category_name', sql.VarChar, category_name)
                 .input('created_at', sql.VarChar, created_at)
                 .query('INSERT INTO Posts (title,Content,user_id,category_name, created_at) VALUES (@title , @Content,@user_id , @category_name,@created_at)');
@@ -50,6 +51,22 @@ export const getAllPost = async (req, res) => {
         sql.close(); // Close the SQL connection
     }
 };
+
+//Get timeStamp
+export const getTimeStamp = async (req, res) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const result = await pool.request().query("SELECT created_at FROM Posts");
+        !result.recordset[0] ? res.status(404).json({ message: 'TimeStamp not found' }) :
+            res.status(200).json(result.recordset);
+    } catch (error) {
+        console.log(error)
+        res.status(201).json({ error: 'an error occurred while retrieving TimeStamp' });
+    } finally {
+        sql.close(); // Close the SQL connection
+    }
+};
+
 
 
 //Update the details of a Post Title

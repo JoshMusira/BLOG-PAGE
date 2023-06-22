@@ -1,5 +1,5 @@
 .header {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 .headerTitles {
   display: flex;
@@ -7,6 +7,12 @@
   align-items: center;
   font-family: "Lora", serif;
   color: #444;
+}
+.Titles {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: black;
 }
 
 .headerTitlesm {
@@ -22,7 +28,7 @@
 
 .headerImg {
   width: 100%;
-  height: 550px;
+  height: 70vh;
   margin-top: 10px;
   object-fit: cover;
 }

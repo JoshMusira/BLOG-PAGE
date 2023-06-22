@@ -43,6 +43,23 @@
   font-size: 25px;
   cursor: pointer;
 }
+.writeInputSelect {
+  font-size: 30px;
+  border: none;
+  color: teal;
+  padding-top: 20px;
+  /* padding: 20px; */
+  width: 70vw;
+}
+.writeInputSelect:focus {
+  outline: none;
+}
+.error {
+  color: rgb(255, 0, 0);
+  margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-bottom: 5px;
+}
 
 .writeInput {
   font-size: 30px;

@@ -29,7 +29,7 @@
   font-weight: bold;
   font-size: 28px;
   z-index: 22;
-  color: #be9656;
+  color: teal;
   padding-top: 10px;
   line-height: 19px;
   margin-right: 10px;
@@ -73,7 +73,7 @@
   border-radius: 10px;
   margin-top: 10px;
   color: white;
-  background-color: #be9656;
+  background-color: teal;
 
   /* padding: 5px; */
 }
@@ -91,6 +91,7 @@
 }
 .viewLikes {
   color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   cursor: pointer;
 }
 .commentContainer {
@@ -115,6 +116,7 @@
 }
 .comment::placeholder {
   font-size: 20px;
+  color: teal;
   padding-left: 5px;
 }
 .comment:focus {
