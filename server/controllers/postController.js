@@ -51,6 +51,24 @@ export const getAllPost = async (req, res) => {
         sql.close(); // Close the SQL connection
     }
 };
+//Get all Post
+export const getSinglePost = async (req, res) => {
+    const { id } = req.params
+    try {
+        let pool = await sql.connect(config.sql);
+        const result = await pool.request()
+            .input("post_id", sql.Int, id)
+            .query(`SELECT * FROM Posts WHERE post_id = ${id}`);
+        const post = result.recordset[0]
+        !result.recordset[0] ? res.status(404).json({ message: 'Post not found' }) :
+            res.status(200).json(post);
+    } catch (error) {
+        console.log(error)
+        res.status(201).json({ error: 'an error occurred while retrieving Posts' });
+    } finally {
+        sql.close(); // Close the SQL connection
+    }
+};
 
 //Get timeStamp
 export const getTimeStamp = async (req, res) => {

@@ -1,12 +1,13 @@
-import { createComment, deleteComment, getAllComments } from '../controllers/commentController.js'
+import { createComment, deleteComment, getAllComments, getCommentsByPostId } from '../controllers/commentController.js'
 import { loginRequired } from '../controllers/auth.js'
 const commentRoutes = (app) => {
     app.route('/comment')
-        .get(loginRequired, getAllComments)
+        .get(getAllComments)
         .post(createComment);
 
-    app.route('/comment/:id')
+    app.route('/comment/:post_id')
         .delete(deleteComment)
+        .get(getCommentsByPostId)
 }
 export default commentRoutes
 

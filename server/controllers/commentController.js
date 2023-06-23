@@ -43,7 +43,7 @@ export const deleteComment = async (req, res) => {
 export const getAllComments = async (req, res) => {
     try {
         let pool = await sql.connect(config.sql);
-        const result = await pool.request().query("SELECT U.username, C.content AS comment FROM Posts P JOIN Users U ON P.user_id = U.user_id JOIN Comments C ON C.post_id = P.post_id ; ");
+        const result = await pool.request().query("SELECT U.username,C.post_id, C.content AS comment FROM Posts P JOIN Users U ON P.user_id = U.user_id JOIN Comments C ON C.post_id = P.post_id ; ");
         !result.recordset[0] ? res.status(404).json({ message: 'Comment not found' }) :
             res.status(200).json(result.recordset);
     } catch (error) {
@@ -54,5 +54,55 @@ export const getAllComments = async (req, res) => {
     }
 };
 
+//Get a comment
+// export const getCommentsByPostId = async (req, res) => {
+//     const { post_id } = req.body; // Assuming post_id is available in the request body
 
+//     try {
+//         let pool = await sql.connect(config.sql);
+//         const result = await pool
+//             .request()
+//             .input("post_id", sql.Int, post_id)
+//             .query(
 
+//         );
+//         const comments = result.recordset[0]
+//         if (!comments) {
+//             res.status(404).json({ message: "Comment not found" });
+//         } else {
+//             res.status(200).json(result.recordset[0]);
+//         }
+//     } catch (err) {
+//         // console.log(error);
+//         // res.status(500).json({ error: "An error occurred while retrieving comments" });
+//         res.status(500).json({ error: err });
+//     } finally {
+//         sql.close(); // Close the SQL connection
+//     }
+// };
+export const getCommentsByPostId = async (req, res) => {
+    const { post_id } = req.params; // Assuming post_id is available in req.body
+    // console.log(post_id)
+    try {
+        let pool = await sql.connect(config.sql);
+        const result = await pool
+            .request()
+            .input("post_id", sql.Int, post_id)
+            .query(`
+            SELECT U.username, C.content
+            FROM Comments C
+            JOIN Users U ON U.user_id = C.user_id
+            WHERE C.post_id = @post_id;
+            
+           
+        `);
+        // console.log(result)
+        res.status(200).json(result.recordset);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message });
+    } finally {
+        sql.close();
+    }
+};
+ // SELECT user_id,post_id, content FROM Comments where post_id = @post_id

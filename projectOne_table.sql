@@ -26,7 +26,7 @@ CREATE TABLE Comments (
   post_id INT NOT NULL,
   user_id INT NOT NULL,
   content VARCHAR(100) NOT NULL,
-  created_at DATETIME NOT NULL,
+  created_at Varchar NOT NULL,
   FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );

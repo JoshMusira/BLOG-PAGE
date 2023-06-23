@@ -1,4 +1,4 @@
-import { createPost, getAllPost, updatePost, updatePost2, updatePost3, deletePost, getTimeStamp } from '../controllers/postController.js'
+import { createPost, getAllPost, updatePost, updatePost2, updatePost3, deletePost, getTimeStamp, getSinglePost } from '../controllers/postController.js'
 import { loginRequired } from '../controllers/auth.js'
 // import { getAllPost, createPost } from '../controllers/postController.js'
 const postRoutes = (app) => {
@@ -12,6 +12,7 @@ const postRoutes = (app) => {
     //Title
     app.route('/post/:id')
         .put(loginRequired, updatePost)
+        .get(getSinglePost)
         .delete(loginRequired, deletePost)
     //Content
     app.route('/post2/:id')
