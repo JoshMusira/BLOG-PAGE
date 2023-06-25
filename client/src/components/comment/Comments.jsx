@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import Axios from "axios";
-import { apiDomain } from "./utils/utilsDomain";
-import { Context } from "./context/userContext/Context";
+import { apiDomain } from "../../utils/utilsDomain";
+import { Context } from "../../context/userContext/Context";
 
 const Comments = ({ id }) => {
     const { user } = useContext(Context);

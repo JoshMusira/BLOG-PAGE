@@ -39,14 +39,15 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const { email, password } = req.body;
+        const { username, email, password } = req.body;
         const hashedpassword = bcrypt.hashSync(password, 10);
         let pool = await sql.connect(config.sql);
         await pool.request()
             .input("id", sql.Int, id)
+            .input("username", sql.VarChar, username)
             .input("email", sql.VarChar, email)
             .input("hashedpassword", sql.VarChar, hashedpassword)
-            .query("UPDATE Users SET email = @email , password = @hashedpassword WHERE user_id = @id;");
+            .query("UPDATE Users SET username = @username, email = @email , password = @hashedpassword WHERE user_id = @id;");
         res.status(200).json({ message: 'User updated successfully' });
     } catch (error) {
         console.log(error)

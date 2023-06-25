@@ -2,20 +2,22 @@
 import sql from 'mssql';
 import config from '../db/config.js';
 
-//User who liked a post
+//Get Users who liked a post
 export const createLike = async (req, res) => {
-    const { post_id, user_id, created_at } = req.body;
+    const { post_id, user_id } = req.body;
+    const created_at = new Date().toISOString();
 
     try {
         const pool = await sql.connect(config.sql);
 
         const query = `
-      SELECT post_id, user_id, created_at
-      FROM Likes
-      WHERE post_id = @post_id AND user_id = @user_id
-    `;
+        SELECT post_id, user_id, created_at
+        FROM Likes
+        WHERE post_id = @post_id AND user_id = @user_id
+      `;
 
-        const result = await pool.request()
+        const result = await pool
+            .request()
             .input('post_id', sql.Int, post_id)
             .input('user_id', sql.Int, user_id)
             .query(query);
@@ -25,9 +27,10 @@ export const createLike = async (req, res) => {
         if (like) {
             res.status(409).json({ error: 'Like already exists' });
         } else {
-            const insertQuery = ' INSERT INTO Likes (post_id, user_id, created_at) VALUES (@post_id, @user_id @created_at)';
+            const insertQuery = 'INSERT INTO Likes (post_id, user_id, created_at) VALUES (@post_id, @user_id, @created_at)';
 
-            await pool.request()
+            await pool
+                .request()
                 .input('post_id', sql.Int, post_id)
                 .input('user_id', sql.Int, user_id)
                 .input('created_at', sql.DateTime, created_at)
@@ -43,8 +46,7 @@ export const createLike = async (req, res) => {
     }
 };
 
-// getUsersWhoLikedPost
-
+//   export { getUsersWhoLikedPost };
 export const getUsersWhoLikedPost = async (req, res) => {
     const { post_id } = req.params;
 
@@ -52,23 +54,24 @@ export const getUsersWhoLikedPost = async (req, res) => {
         const pool = await sql.connect(config.sql);
 
         const query = `
-      SELECT U.username, L.post_id
-      FROM Likes L
-      JOIN Users U ON L.user_id = U.user_id
-      WHERE L.post_id = @post_id
-    `;
+            SELECT U.username
+            FROM Likes L
+            JOIN Users U ON L.user_id = U.user_id
+            WHERE L.post_id = @post_id
+        `;
 
         const result = await pool.request()
             .input('post_id', sql.Int, post_id)
             .query(query);
 
-        const likes = result.recordset;
+        const usernames = result.recordset.map(record => record.username);
 
-        res.status(200).json({ likes });
+        res.status(200).json({ usernames });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: 'An error occurred while retrieving likes' });
+        res.status(500).json({ error: 'An error occurred while retrieving usernames' });
     } finally {
         sql.close();
     }
 };
+
