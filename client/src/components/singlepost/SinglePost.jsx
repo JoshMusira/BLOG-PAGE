@@ -80,18 +80,18 @@ const SinglePost = () => {
                     <img className="postImg" src={post1} alt="" />
                     <div className="postInfo">
                         <div className="postCats">
-                            <span className="postCat">{blogs.categoryname}</span>
+                            <span className="postCat">{blogs.category_name}</span>
                         </div>
                         <span className="postTitle">{blogs.title}</span>
                         <hr />
                         <span className="postDate">Date: {blogs.created_at}</span>
                     </div>
                     <p className="postDesc">{blogs.Content}</p>
-                    <div className="likeContainer">
+                    {/* <div className="likeContainer">
                         <img className="likeIcon" src={likegif} onClick={likeHandler} alt="" />
                         <span className="numberOfLikes">6 likes</span>
                         <span className="viewLikes">View all Likes</span>
-                    </div>
+                    </div> */}
                     <div className="commentContainer">
                         <span className="viewComments" onClick={handleCommentClick}>
                             View all comments

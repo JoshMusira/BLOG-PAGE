@@ -20,11 +20,11 @@ const Post = () => {
 
             </div>
             <p className="postDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi dolores, optio nesciunt culpa adipisci veniam aperiam aspernatur commodi ea aliquam sapiente suscipit deserunt dolor reiciendis, laboriosam repudiandae blanditiis ad neque nihil officia quaerat? Illum harum labore sequi ducimus, dolores atque quod dolor sit, nemo corporis ut optio odio qui eaque reprehenderit molestiae numquam iusto itaque consequuntur earum enim veritatis, vitae excepturi. Ducimus voluptatum fugit blanditiis itaque? Cumque consectetur ex ducimus autem officia ab non maiores odio sit harum quisquam voluptas praesentium, eligendi expedita corrupti recusandae quo ullam hic omnis velit dolores ipsa a magnam perferendis! Quasi saepe minus error.</p>
-            <div className="likeContainer">
+            {/* <div className="likeContainer">
                 <span className="img">❤</span>
                 <span className="numberOfLikes">6 likes</span>
                 <span className="viewLikes">View all Likes</span>
-            </div>
+            </div> */}
             <div className="commentContainer">
                 <span className="viewComments">View all comments</span>
                 <div className="addComment">

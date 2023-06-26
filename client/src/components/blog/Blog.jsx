@@ -28,18 +28,6 @@ const Blog = ({ post, onDelete }) => {
         setIsLiked(!isLiked);
     };
 
-    // const handleDelete = async () => {
-    //     try {
-    //         await Axios.delete(`${apiDomain}/post/${post.post_id}`, {
-    //             headers: { Authorization: `${user.token}` },
-    //         });
-    //         onDelete(post.post_id); // Invoke the onDelete function passed from the parent component
-    //     } catch (error) {
-    //         console.error(error);
-    //         // Handle error while deleting the post
-    //     }
-    // };
-
     return (
         <>{
 
@@ -48,14 +36,14 @@ const Blog = ({ post, onDelete }) => {
                     <img className="postImg" src={post1} alt="" />
                     <div className="postInfo">
                         <div className="postCats">
-                            <span className="postCat">{post.categoryname}</span>
+                            <span className="postCat">{post.category_name}</span>
                         </div>
                         <span className="postTitle">{post.title}</span>
                         <hr />
                         <span className="postDate">Date:{post.created_at}</span>
                     </div>
                     <p className="postDesc">{post.Content}</p>
-                    <div className="likeContainer">
+                    {/* <div className="likeContainer">
                         <img
                             className="likeIcon"
                             src={likegif}
@@ -64,7 +52,7 @@ const Blog = ({ post, onDelete }) => {
                         />
                         <span className="numberOfLikes">6 likes</span>
                         <span className="viewLikes">View all Likes</span>
-                    </div>
+                    </div> */}
                     <div className="commentContainer">
                         <span className="viewComments" onClick={handleCommentClick}>
                             View all comments

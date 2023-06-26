@@ -6,12 +6,17 @@
   flex-direction: column;
   border: 2px solid gainsboro;
   padding: 7px;
-  background-color: #faf5f5;
+  background-color: rgb(225, 241, 254);
   border-radius: 10px;
   box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 1px 4px 5px 0px rgba(0, 0, 0, 0.75);
   transition: all 1s ease-in-out;
+}
+.post:hover {
+  background-color: aliceblue;
+  border: 1px solid teal;
+  transform: scale(0.9);
 }
 
 .postImg {

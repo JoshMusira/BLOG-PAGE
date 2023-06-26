@@ -43,8 +43,10 @@ const AddComment = ({ id }) => {
 
                     <p className='error'>{errors.comment?.message}</p>
                     {/* <textarea {...register("comment")} type='text' name="" placeholder='Add a comment' id="" className="comment"></textarea> */}
+
                     <textarea {...register("content")} placeholder='Add a comment' name='content' className="comment"></textarea>
                     <input type="submit" className='submit' value="Post" /><span className='emoji'>😂</span>
+
                 </div>
             </form>
         </div>

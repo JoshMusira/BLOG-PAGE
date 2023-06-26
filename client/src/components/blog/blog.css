@@ -14,3 +14,6 @@
 .postLikeCounter {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.delete {
+  padding-top: 10px;
+}
