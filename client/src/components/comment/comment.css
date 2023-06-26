@@ -1,0 +1,11 @@
+.Container {
+  background-color: gray;
+}
+.username {
+  color: white;
+  /* font-style: oblique; */
+}
+.comment {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: oblique;
+}

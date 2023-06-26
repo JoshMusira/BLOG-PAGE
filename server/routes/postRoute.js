@@ -12,7 +12,7 @@ const postRoutes = (app) => {
     //Title
     app.route('/post/:id')
         .put(loginRequired, updatePost)
-        .get(getSinglePost)
+        .get(loginRequired, getSinglePost)
         .delete(loginRequired, deletePost)
     //Content
     app.route('/post2/:id')

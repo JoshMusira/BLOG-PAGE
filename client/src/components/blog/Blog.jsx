@@ -1,16 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../blog/blog.css";
-import { useEffect, useContext, useState } from "react";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useContext, useState } from "react";
 import { Context } from "../../context/userContext/Context";
 import Axios from "axios";
 import { apiDomain } from "../../utils/utilsDomain";
 import post1 from "../../assets/images/9.jpeg";
-import { set } from "react-hook-form";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import TimeDifference from "../../utils/TimeStamp";
-import heart from "../../assets/images/heart.png";
 import Comments from "../comment/Comments";
 import AddComment from "../comment/AddComment";
+import likegif from '../../assets/images/likegif.gif';
+import { GrUpdate } from 'react-icons/gr'
 
 const Blog = ({ post, onDelete }) => {
     const { user } = useContext(Context);
@@ -28,55 +28,58 @@ const Blog = ({ post, onDelete }) => {
         setIsLiked(!isLiked);
     };
 
-    const handleDelete = () => {
-        onDelete(post.post_id);
-    };
+    // const handleDelete = async () => {
+    //     try {
+    //         await Axios.delete(`${apiDomain}/post/${post.post_id}`, {
+    //             headers: { Authorization: `${user.token}` },
+    //         });
+    //         onDelete(post.post_id); // Invoke the onDelete function passed from the parent component
+    //     } catch (error) {
+    //         console.error(error);
+    //         // Handle error while deleting the post
+    //     }
+    // };
 
     return (
-        <>
-            <div className="post">
-                {/* <h3>{post.image_URL}</h3> */}
-                <img className="postImg" src={post1} alt="" />
-                <div className="postInfo">
-                    <div className="postCats">
-                        <span className="postCat">{post.post_id}</span>
+        <>{
+
+            <Link className="Link" to={`/post/${post.post_id}`}>
+                <div className="post">
+                    <img className="postImg" src={post1} alt="" />
+                    <div className="postInfo">
+                        <div className="postCats">
+                            <span className="postCat">{post.categoryname}</span>
+                        </div>
+                        <span className="postTitle">{post.title}</span>
+                        <hr />
+                        <span className="postDate">Date:{post.created_at}</span>
                     </div>
-                    <span className="postTitle">{post.title}</span>
-                    <hr />
-                    <span className="postDate">{<TimeDifference />}</span>
-                </div>
-                <p className="postDesc">{post.Content}</p>
-                <div className="likeContainer">
-                    <span className="img">❤</span>
-                    <span className="numberOfLikes">6 likes</span>
-                    <span className="viewLikes">View all Likes</span>
-                </div>
-                {/* <Comments id={id} /> */}
-                <div className="commentContainer">
-                    <span
-                        className="viewComments"
-                        onClick={handleCommentClick}
-                    >
-                        View all comments
+                    <p className="postDesc">{post.Content}</p>
+                    <div className="likeContainer">
+                        <img
+                            className="likeIcon"
+                            src={likegif}
+                            onClick={likeHandler}
+                            alt=""
+                        />
+                        <span className="numberOfLikes">6 likes</span>
+                        <span className="viewLikes">View all Likes</span>
+                    </div>
+                    <div className="commentContainer">
+                        <span className="viewComments" onClick={handleCommentClick}>
+                            View all comments
+                        </span>
+                        {showComments && <Comments id={post.post_id} />}
+                        <AddComment id={post.post_id} />
+                    </div>
+                    <span className="delete">
+                        <RiDeleteBin6Line />
                     </span>
-                    {showComments && <Comments id={post.post_id} />}
-
-                    <AddComment id={post.post_id} />
-
                 </div>
-                <span>
-                    <RiDeleteBin6Line
-                        className="delete"
-                        onClick={handleDelete}
-                    />
-                </span>
-                <div className="postBottomLeft">
-                    {/* <img className='likeIcon' src={likeImg} onClick={likeHandler} alt="" /> */}
-                    <img className="likeIcon" src={heart} onClick={likeHandler} alt="" />
-                    <span className="postLikeCounter"> people like it</span>
-                </div>
-            </div>
+            </Link>
+        }
         </>
+
     );
 };
 

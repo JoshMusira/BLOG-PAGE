@@ -51,7 +51,7 @@ export const getAllPost = async (req, res) => {
         sql.close(); // Close the SQL connection
     }
 };
-//Get all Post
+//Get single Post
 export const getSinglePost = async (req, res) => {
     const { id } = req.params
     try {

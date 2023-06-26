@@ -6,8 +6,8 @@ import SinglePost from '../../components/singlepost/SinglePost'
 const Single = () => {
     return (
         <div className='single'>
-            <SinglePost />
-            <Sidebar />
+            <SinglePost className='left' />
+            <Sidebar className='right' />
         </div>
     )
 }

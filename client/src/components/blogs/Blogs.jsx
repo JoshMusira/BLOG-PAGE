@@ -6,14 +6,14 @@ import { apiDomain } from "../../utils/utilsDomain";
 
 const Blogs = () => {
     const { user } = useContext(Context);
-    const [blogs, setBlogs] = useState([])
+    const [blogs, setBlogs] = useState([]);
 
     const getBlogs = async () => {
         const res = await Axios.get(`${apiDomain}/post`, {
-            headers: { "Authorization": `${user.token}` }
-        })
-        setBlogs(res.data)
-    }
+            headers: { Authorization: `${user.token}` }
+        });
+        setBlogs(res.data);
+    };
 
     const handleDelete = async (postId) => {
         try {
@@ -22,8 +22,8 @@ const Blogs = () => {
             // Update the blogs state after successful deletion
             setBlogs(prevBlogs => prevBlogs.filter(blog => blog.post_id !== postId));
         } catch (error) {
-            alert("You are not the owner.");
-            // console.log(error);
+            alert("An error occurred while deleting the post");
+            console.error(error);
         }
     };
 
@@ -33,13 +33,11 @@ const Blogs = () => {
 
     return (
         <>
-            {
-                blogs && blogs.map((post, index) => (
-                    <Blog key={post.post_id} post={post} onDelete={handleDelete} />
-                ))
-            }
+            {blogs.map((post) => (
+                <Blog key={post.post_id} post={post} />
+            ))}
         </>
-    )
-}
+    );
+};
 
 export default Blogs;

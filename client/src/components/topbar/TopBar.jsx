@@ -57,7 +57,7 @@ const TopBar = () => {
                             />
                             {/* <BiUserCircle className="topIcon" /> */}
                             <div className="pro">
-                                <h4 className='username'>{user.username}</h4>
+                                <h4 className='usernameProfile'>{user.username}</h4>
                                 <p className='email' >Settings</p>
                             </div>
                         </Link>
